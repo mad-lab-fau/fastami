@@ -31,10 +31,8 @@ class TestFastami:
     def test_different_labels(self):
         labels_true = [1, 1, 2, 2, 3, 3]
         labels_pred = [1, 2, 3, 1, 2, 3]
-        ami, ami_err = adjusted_mutual_info_mc(
-            labels_true, labels_pred, seed=12345)
-        assert abs(ami - adjusted_mutual_info_score(labels_true,
-                   labels_pred)) <= ami_err
+        ami, ami_err = adjusted_mutual_info_mc(labels_true, labels_pred, seed=12345)
+        assert abs(ami - adjusted_mutual_info_score(labels_true, labels_pred)) <= ami_err
 
     def test_random_labels(self):
         prng = Generator(PCG64(12345))
@@ -42,9 +40,9 @@ class TestFastami:
             labels_true = prng.integers(0, 20, size=100)
             labels_pred = prng.integers(0, 20, size=100)
             ami, ami_err = adjusted_mutual_info_mc(
-                labels_true, labels_pred, seed=prng, accuracy_goal=0.001, min_samples=1_000)
-            assert abs(ami - adjusted_mutual_info_score(labels_true,
-                                                        labels_pred)) <= 0.01
+                labels_true, labels_pred, seed=prng, accuracy_goal=0.001, min_samples=1_000
+            )
+            assert abs(ami - adjusted_mutual_info_score(labels_true, labels_pred)) <= 0.01
 
     def test_accuracy(self):
         prng = Generator(PCG64(12345))
@@ -55,7 +53,8 @@ class TestFastami:
             good_approximation = []
             for _ in range(100):
                 ami, ami_err = adjusted_mutual_info_mc(
-                    labels_true, labels_pred, seed=prng, accuracy_goal=0.01, min_samples=100)
+                    labels_true, labels_pred, seed=prng, accuracy_goal=0.01, min_samples=100
+                )
                 assert ami_err <= accuracy_goal
                 good_approximation.append(abs(ami - ami_sklearn) <= ami_err)
             assert np.mean(good_approximation) >= 0.68

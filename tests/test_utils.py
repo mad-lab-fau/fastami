@@ -1,4 +1,3 @@
-import pytest
 from fastami.utils import WalkerRandomSampling
 from numpy.random import PCG64, Generator
 import numpy as np
@@ -12,16 +11,16 @@ class TestUtils:
         values, counts = np.unique(variates, return_counts=True)
         freqs = counts / len(variates)
         assert list(values) == [0, 1, 2]
-        assert np.allclose(freqs, [1/6, 2/6, 3/6], atol=1e-2)
+        assert np.allclose(freqs, [1 / 6, 2 / 6, 3 / 6], atol=1e-2)
 
     def test_custom_keys(self):
         prng = Generator(PCG64(12345))
-        walker = WalkerRandomSampling([1, 2, 3], ['a', 'b', 'c'], seed=prng)
+        walker = WalkerRandomSampling([1, 2, 3], ["a", "b", "c"], seed=prng)
         variates = [walker.random() for _ in range(10_000)]
         values, counts = np.unique(variates, return_counts=True)
         freqs = counts / len(variates)
-        assert list(values) == ['a', 'b', 'c']
-        assert np.allclose(freqs, [1/6, 2/6, 3/6], atol=1e-2)
+        assert list(values) == ["a", "b", "c"]
+        assert np.allclose(freqs, [1 / 6, 2 / 6, 3 / 6], atol=1e-2)
 
     def test_generator_weights(self):
         prng = Generator(PCG64(12345))
@@ -43,4 +42,4 @@ class TestUtils:
         values, counts = np.unique(variates, return_counts=True)
         freqs = counts / len(variates)
         assert list(values) == [0, 1, 2]
-        assert np.allclose(freqs, [1/6, 2/6, 3/6], atol=1e-2)
+        assert np.allclose(freqs, [1 / 6, 2 / 6, 3 / 6], atol=1e-2)
