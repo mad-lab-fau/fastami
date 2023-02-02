@@ -1,7 +1,8 @@
-from scipy.stats import random_table
 from typing import Sequence, Tuple, Union
+
 import numpy as np
-from numpy.random import SeedSequence, BitGenerator, Generator, default_rng
+from numpy.random import BitGenerator, Generator, SeedSequence, default_rng
+from scipy.stats import random_table
 from sklearn.metrics.cluster import contingency_matrix, mutual_info_score
 
 
@@ -50,7 +51,13 @@ def standardized_mutual_info_mc(
         emi = np.mean(mi_arr)
         emi_std = np.std(mi_arr, ddof=1)
 
-        smi = (mi - emi) / emi_std
+        # Analytical continuation for zero variance
+        if emi_std == 0.0:
+            # If there is no variance, the expected value is the observed value
+            # such that the analytical continuation is 1.0
+            smi = 1.0
+        else:
+            smi = (mi - emi) / emi_std
 
         smi_err = np.sqrt(1 / len(mi_arr) + (smi * smi) / (2 * (len(mi_arr) - 1)))
         precision = abs(smi_err / smi)

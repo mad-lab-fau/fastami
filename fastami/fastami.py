@@ -1,7 +1,9 @@
 from typing import Sequence, Tuple, Union
-from numpy import ravel, unique, log, sqrt, ceil, mean, std, finfo
-from numpy.random import default_rng, SeedSequence, BitGenerator, Generator
-from sklearn.metrics.cluster import contingency_matrix, mutual_info_score, entropy
+
+from numpy import ceil, finfo, log, mean, ravel, sqrt, std, unique
+from numpy.random import BitGenerator, Generator, SeedSequence, default_rng
+from sklearn.metrics.cluster import contingency_matrix, entropy, mutual_info_score
+
 from fastami.utils import WalkerRandomSampling
 
 
