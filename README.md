@@ -5,7 +5,7 @@ A Monte Carlo approximation to the adjusted and standardized mutual information 
 
 ## Installation
 
-``fastami`` requires Python >=3.8. You can install ``fastami`` via pip from 
+``fastami`` requires Python >=3.8. You can install ``fastami`` via pip from PyPI:
 
 ```bash
 pip install fastami
