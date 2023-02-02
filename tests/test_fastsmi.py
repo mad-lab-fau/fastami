@@ -1,7 +1,8 @@
-import pytest
-from fastami import standardized_mutual_info_mc
-from numpy.random import PCG64, Generator
 import numpy as np
+import pytest
+from numpy.random import PCG64, Generator
+
+from fastami import standardized_mutual_info_mc
 
 
 class TestFastsmi:
@@ -209,3 +210,9 @@ class TestFastsmi:
                 good_approximation.append(abs(smi - exact_result) <= smi_err)
 
             assert np.mean(good_approximation) > 0.68
+
+    def test_zero_variance(self):
+        labels_true = [0] * 4 + [1] * 4
+        labels_pred = [0] * 7 + [1] * 1
+        smi, smi_err = standardized_mutual_info_mc(labels_true, labels_pred, precision_goal=0.01, seed=12345)
+        np.testing.assert_almost_equal(smi, 1.0, decimal=2)

@@ -1,8 +1,9 @@
-import pytest
-from sklearn.metrics.cluster import adjusted_mutual_info_score
-from fastami import adjusted_mutual_info_mc
-from numpy.random import PCG64, Generator
 import numpy as np
+import pytest
+from numpy.random import PCG64, Generator
+from sklearn.metrics.cluster import adjusted_mutual_info_score
+
+from fastami import adjusted_mutual_info_mc
 
 
 class TestFastami:

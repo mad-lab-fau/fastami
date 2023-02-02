@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastami"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Monte Carlo approximation to the adjusted and standardized mutual information for faster clustering comparisons"
 authors = ["FastAMI <kai.klede@fau.de>"]
 license = "MIT"
@@ -19,6 +19,8 @@ coverage = "^7.0.3"
 
 [tool.poetry.group.dev.dependencies]
 black = {version = "^23.1a1", allow-prereleases = true}
+isort = "^5.12.0"
+poethepoet = "^0.18.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

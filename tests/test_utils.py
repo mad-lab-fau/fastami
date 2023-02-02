@@ -1,6 +1,7 @@
-from fastami.utils import WalkerRandomSampling
-from numpy.random import PCG64, Generator
 import numpy as np
+from numpy.random import PCG64, Generator
+
+from fastami.utils import WalkerRandomSampling
 
 
 class TestUtils:

@@ -49,7 +49,7 @@ class WalkerRandomSampling(object):
             k = long[-1]
 
             inx[j] = k
-            weights[k] -= (1 - weights[j])
+            weights[k] -= 1 - weights[j]
             if weights[k] < 1:
                 short.append(k)
                 long.pop()
