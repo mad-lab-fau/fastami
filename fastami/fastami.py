@@ -17,7 +17,11 @@ def adjusted_mutual_info_mc(
     """Approximate adjusted mutual information score for two clusterings.
 
     The ajusted mutual information score is calculated based on a Monte-Carlo
-    estimate of the expected mutual information.
+    estimate of the expected mutual information. The expected runtime is bounded
+    by O(R * C / accuracy_goal**2) where R and C are the number of clusters in
+    the two clusterings. For further information see Klede et al. (2023).
+    FastAMI — A Monte Carlo Approach to the Adjustment for Chance in Clustering
+    Comparison Metrics. Proceedings of the AAAI Conference on Artificial Intelligence.
 
     Args:
         labels_true: A clustering of the data into disjoint subsets.
