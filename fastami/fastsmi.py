@@ -16,16 +16,30 @@ def standardized_mutual_info_mc(
     """Calculate the Monte-Carlo estimate of the standardized mutual
     information sampling full contingency matrices directly.
 
+    The Standardized Mutual Information (SMI) is defined as
+
+        SMI(U, V) = (MI(U,V) - E(MI(U, V))) / std(MI(U, V)),
+
+    under random permutations of the labels. The SMI can be interpreted as the
+    number of standard deviations the observed mutual information is away from
+    the expected value. The SMI should be used when comparing multiple clusterings
+    via a common ground truth reference. The SMI is approximated via Monte-Carlo
+    sampling of full contingency matrices with the corresponding marginals.
+
+    For further information see Klede et al. (2023). FastAMI — A Monte Carlo
+    Approach to the Adjustment for Chance in Clustering Comparison Metrics.
+    Proceedings of the AAAI Conference on Artificial Intelligence.
+
     Args:
-        labels_true: True labels.
-        labels_pred: Predicted labels.
-        seed: Random seed.
+        labels_true: A clustering of the data into disjoint subsets.
+        labels_pred: Another clustering of the data into disjoint subsets.
+        seed: The random seed to use.
         precision_goal: Targeted relative or absolute error of the approximation.
             If the relative or the absolute error is smaller than this value, the algorithm stops.
         min_samples: Minimum number of samples to use.
 
     Returns:
-        Tuple (smi, smi_err).
+        A tuple of the standardized mutual information and an error estimate.
 
     Notes:
         The error estimate assumes large sample sizes and can therefore be inaccurate if min_samples is too low.
