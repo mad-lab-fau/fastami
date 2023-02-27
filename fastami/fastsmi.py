@@ -58,7 +58,7 @@ def standardized_mutual_info_mc(
 
     mi_arr = []
 
-    while (precision > precision_goal) and (smi_err > precision_goal):
+    while precision > precision_goal:
         for _ in range(mc_samples):
             mi_arr.append(mutual_info_score(_, _, contingency=random_table.rvs(nrowt, ncolt, random_state=prng)))
 
@@ -74,21 +74,21 @@ def standardized_mutual_info_mc(
             smi = (mi - emi) / emi_std
 
         smi_err = np.sqrt(1 / len(mi_arr) + (smi * smi) / (2 * (len(mi_arr) - 1)))
-        precision = abs(smi_err / smi)
+        precision = smi_err / max(abs(smi), 1)
 
         # Estimate samples needed to fulfill precision requirements
-
-        s2 = smi**2
-        ps2 = precision_goal**2 * s2
-
-        mc_samples = np.ceil((2 + s2 + 2 * ps2 + np.sqrt(-16 * ps2 + (2 + s2 + 2 * ps2) ** 2)) / (4 * ps2)) - len(
-            mi_arr
-        )
-        if mc_samples == np.nan:
+        if smi == 0.0:
             mc_samples = min_samples
-        mc_samples = max(mc_samples, min_samples)
-        # Make sure that we don't overestimate too much
-        mc_samples = min(mc_samples, 100 * min_samples)
-        mc_samples = int(mc_samples)
+        else:
+            s2 = smi**2
+            ps2 = precision_goal**2 * s2
+
+            mc_samples = np.ceil((2 + s2 + 2 * ps2 + np.sqrt(-16 * ps2 + (2 + s2 + 2 * ps2) ** 2)) / (4 * ps2)) - len(
+                mi_arr
+            )
+            mc_samples = max(mc_samples, min_samples)
+            # Make sure that we don't overestimate too much
+            mc_samples = min(mc_samples, 100 * min_samples)
+            mc_samples = int(mc_samples)
 
     return smi, smi_err
