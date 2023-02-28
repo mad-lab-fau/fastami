@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastami"
-version = "0.2.0"
+version = "0.2.1"
 description = "A Monte Carlo approximation to the adjusted and standardized mutual information for faster clustering comparisons"
 authors = ["FastAMI <kai.klede@fau.de>"]
 license = "MIT"
