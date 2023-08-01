@@ -1,7 +1,7 @@
 [![codecov](https://codecov.io/gh/mad-lab-fau/fastami/branch/main/graph/badge.svg?token=U379I88TBU)](https://codecov.io/gh/mad-lab-fau/fastami)
 # FastAMI
 
-A Monte Carlo approximation to the adjusted and standardized mutual information for faster clustering comparisons. You can use this package as a drop-in replacement for ``sklearn.metrics.adjusted_mutual_info_score``, when the exact calculation is too slow, i.e. because of large datasets and large numbers of clusters.
+A Monte Carlo approximation to the adjusted and standardized mutual information for faster clustering comparisons. Use this package as a drop-in replacement for ``sklearn.metrics.adjusted_mutual_info_score``, when the exact calculation is too slow, i.e., because of large datasets and large numbers of clusters. You can find more details in our [publication](https://doi.org/10.48550/arXiv.2305.03022).
 
 ## Installation
 
@@ -51,8 +51,19 @@ While FastSMI is usually faster than an exact calculation of the SMI, it is stil
 
 ## Citing FastAMI
 
-If you use `fastami` in your research work, please cite the corresponding paper (will probably be published by March 2023):
+If you use `fastami` in your research work, please cite our [paper](https://doi.org/10.1609/aaai.v37i7.26003):
 
 ```
-Klede et al., (2023). FastAMI - A Monte Carlo Approach to the Adjustment for Chance in Clustering Comparison Metrics. Proceedings of the AAAI Conference on Artificial Intelligence.
+@article{Klede_Schwinn_Zanca_Eskofier_2023,
+  title={FastAMI – a Monte Carlo Approach to the Adjustment for Chance in Clustering Comparison Metrics},
+  volume={37},
+  url={https://ojs.aaai.org/index.php/AAAI/article/view/26003},
+  DOI={10.1609/aaai.v37i7.26003},
+  number={7},
+  journal={Proceedings of the AAAI Conference on Artificial Intelligence},
+  author={Klede, Kai and Schwinn, Leo and Zanca, Dario and Eskofier, Björn},
+  year={2023},
+  month={Jun.},
+  pages={8317-8324}
+}
 ```
