@@ -1,5 +1,5 @@
 [![codecov](https://codecov.io/gh/mad-lab-fau/fastami/branch/main/graph/badge.svg?token=U379I88TBU)](https://codecov.io/gh/mad-lab-fau/fastami)
-# FastAMI
+# FastAMI - Fast Adjusted Mutual Information
 
 A Monte Carlo approximation to the adjusted and standardized mutual information for faster clustering comparisons. Use this package as a drop-in replacement for ``sklearn.metrics.adjusted_mutual_info_score``, when the exact calculation is too slow, i.e., because of large datasets and large numbers of clusters. You can find more details in our [publication](https://doi.org/10.48550/arXiv.2305.03022).
 
